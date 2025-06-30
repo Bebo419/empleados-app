@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class=" flex-column text-center">
+
+        <h2>Lista de Empleados Angular</h2>
+    </div>
+    <div class="row">
+        <h2 class="d-flex">
+            Registro
+        </h2>
+            <form (ngSubmit)="agregarEmpleado()" #formEmpleado="ngForm" class="mb-4">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoEmpleado.Nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo" [(ngModel)]="nuevoEmpleado.Correo" name="correo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" [(ngModel)]="nuevoEmpleado.Telefono" name="telefono">
+                </div>
+                <div class="mb-3">
+                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaNacimiento" [(ngModel)]="nuevoEmpleado.FechaNacimiento" name="fechaNacimiento">
+                </div>
+
+                <label for="sexo" class="form-label me-3">Sexo:</label>
+                <div class="d-flex align-items-center w-100 mb-3">
+                    <div class="form-check me-3">
+                    <input type="radio" class="form-check-input" id="sexoMasculino"[(ngModel)]="nuevoEmpleado.Sexo" name="sexo" value="Masculino" required>
+                    <label for="sexoMasculino" class="form-check-label">Masculino</label>
+                    </div>
+                    <div class="form-check me-3">
+                    <input type="radio" class="form-check-input" id="sexoFemenino"[(ngModel)]="nuevoEmpleado.Sexo" name="sexo" value="Femenino" required>
+                    <label for="sexoFemenino" class="form-check-label">Femenino</label>
+                </div>
+                        <button type="submit" class="btn btn-primary ms-auto">Agregar Empleado</button>
+                </div>
+            </form>
+        
+
+        <div class="">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Num. Empleado</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Sexo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let empleado of empleados">
+                        <td>{{ empleado.Id }}</td>
+                        <td>{{ empleado.Nombre }}</td>
+                        <td>{{ empleado.Correo }}</td>
+                        <td>{{ empleado.Telefono }}</td>
+                        <td>{{ empleado.FechaNacimiento | date }}</td>
+                        <td>{{ empleado.Sexo }}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="eliminarEmpleado(empleado.Id)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
